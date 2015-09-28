@@ -19,10 +19,10 @@ class ImgFile:
 			if ls[index]=='.':
 				fin=index
 				index-=1
-				while ls[index]!='\':
+				while ls[index]!='/':
 					index-=1
 				else:
-					return path[index:fin]
+					return path[index+1:fin]
 					
 			index+=1		
 		print "Bad source path input"
