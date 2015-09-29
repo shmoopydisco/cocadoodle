@@ -1,12 +1,26 @@
 #our code here
-#import Image from PIL
-import ntpath
+from PIL import Image
+from ntpath import basename
+import os
+
 class ImgFile(object):
 	"""Image file class"""
 	def __init__(self,path):
 		self.path=path
 		self.name=self.retrieve_name()
+	
+	def get_format(self):
+		path=self.get_path()
+		index=0
+		for char in path:
+			if char=='.':
+				return path[index:]
+			index+=1
+	
+	def valid_format(self):
+		frmt=self.get_format()
 		
+	
 	def get_name(self):
 		return self.name
 	
@@ -14,16 +28,28 @@ class ImgFile(object):
 		return self.path
 	
 	def retrieve_name(self):
-		name=ntpath.basename(self.path)
+		name=basename(self.path)
 		index=0
 		for char in name:
 			if char=='.':
 				return name[:index]
 			index+=1
+	
+	def convert(self,trgt_format,trgt_path):
+		try:
+			im=Image.open(self.get_path())
+			im.save("{}{}.{}".format(trgt_path, self.get_name(),trgt_format))
+			print "done"
+		except Exception, e:
+			print e
+
 def main():
-	p="C:\bool\bool\pee.txt"
+	p="C://Users//Daniel//Desktop//shit//bodies.mp3"
 	img=ImgFile(p)
-	print img.get_name()
+	frmt="png"
+	pth="C://Users//Daniel//Desktop//"
+	img.convert(frmt, pth)
+	
 	
 if __name__ == '__main__':
 	main()
