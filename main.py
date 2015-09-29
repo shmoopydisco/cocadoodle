@@ -1,8 +1,9 @@
 #our code here
-import Image from PIL
-class ImgFile:
+#import Image from PIL
+import ntpath
+class ImgFile(object):
 	"""Image file class"""
-	def __init__(self,path)
+	def __init__(self,path):
 		self.path=path
 		self.name=retrieve_name(path)
 		
@@ -13,23 +14,16 @@ class ImgFile:
 		return self.path
 	
 	def retrieve_name(path):
-		ls=list(path)
+		name=ntpath.basename(path)
 		index=0
-		for char in ls:
-			if ls[index]=='.':
-				fin=index
-				index-=1
-				while ls[index]!='/':
-					index-=1
-				else:
-					return path[index+1:fin]
-					
-			index+=1		
-		print "Bad source path input"
-		return 0 	#to trigger a second loop in main?
-
+		for char in name:
+			if char=='.':
+				return name[:index]
+			index+=1
 def main():
-	print 'hello'
-
+	p="C:\bool\bool\pee.txt"
+	img=ImgFile(p)
+	get_name(img)
+	
 if __name__ == '__main__':
 	main()
