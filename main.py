@@ -5,7 +5,7 @@ class ImgFile(object):
 	"""Image file class"""
 	def __init__(self,path):
 		self.path=path
-		self.name=retrieve_name(path)
+		self.name=self.retrieve_name()
 		
 	def get_name(self):
 		return self.name
@@ -13,8 +13,8 @@ class ImgFile(object):
 	def get_path(self):
 		return self.path
 	
-	def retrieve_name(path):
-		name=ntpath.basename(path)
+	def retrieve_name(self):
+		name=ntpath.basename(self.path)
 		index=0
 		for char in name:
 			if char=='.':
@@ -23,7 +23,7 @@ class ImgFile(object):
 def main():
 	p="C:\bool\bool\pee.txt"
 	img=ImgFile(p)
-	get_name(img)
+	print img.get_name()
 	
 if __name__ == '__main__':
 	main()
