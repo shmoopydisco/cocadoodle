@@ -14,7 +14,7 @@ class ImgFile(object):
 		index=0
 		for char in path:
 			if char=='.':
-				return path[index:]
+				return path[index+1:]
 			index+=1
 	
 	def valid_format(self):
@@ -44,11 +44,15 @@ class ImgFile(object):
 			print e
 
 def main():
+	
+	#testbed
+	"""
 	p="C://Users//Daniel//Desktop//shit//bodies.mp3"
 	img=ImgFile(p)
 	frmt="png"
 	pth="C://Users//Daniel//Desktop//"
 	img.convert(frmt, pth)
+	"""
 	
 	
 if __name__ == '__main__':
